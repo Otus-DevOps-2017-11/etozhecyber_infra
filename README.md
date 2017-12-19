@@ -29,7 +29,7 @@ IP: 35.189.198.21
 Хост someinternalhost,
 внутр IP: 10.132.0.3
 # Homework-06 
-##### Создание Redditapp instance
+##### Создание Redditapp instance из скрипта из git'а
 ```sh
 gcloud compute instances create reddit-app \
 --boot-disk-size=10GB \
@@ -40,3 +40,16 @@ gcloud compute instances create reddit-app \
 --tags puma-server \
 --restart-on-failure  \
 --metadata "startup-script-url=https://raw.githubusercontent.com/Otus-DevOps-2017-11/etozhecyber_infra/Infra-2/startup.sh"
+```
+или напрямую цепью комманд
+```sh
+gcloud compute instances create reddit-app \
+--boot-disk-size=10GB \
+--zone=europe-west1-d \
+--image-family ubuntu-1604-lts \
+--image-project=ubuntu-os-cloud \
+--machine-type=g1-small \
+--tags puma-server \
+--restart-on-failure  \
+--metadata "startup-script=git clone https://github.com/Otus-DevOps-2017-11/reddit.git && cd reddit && bundle install && puma -d"
+```
