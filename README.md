@@ -53,3 +53,14 @@ gcloud compute instances create reddit-app \
 --restart-on-failure  \
 --metadata "startup-script=git clone https://github.com/Otus-DevOps-2017-11/reddit.git && cd reddit && bundle install && puma -d"
 ```
+# Homework-10
+## Базовая часть
+
+Все сделано по описанию - установлен ansible с помощью файла [requirements.txt](./ansible/requirements.txt)
+
+```
+sudo pip install -r requirements.txt
+```
+Далее было поднято тестовое откружение, созданы inventory файлы (
+[ini](./ansible/inventory) и [yml](./ansible/inventory.yml)),
+проверен ping до хостов.
