@@ -1,0 +1,17 @@
+---
+- name: Install ruby-full ruby-bundler build-essential
+  become: true
+  hosts: all
+  tasks:
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes
+    - name: Install the packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        state: latest
+      with_items:
+        - build-essential
+        - ruby-full
+        - ruby-bundler
