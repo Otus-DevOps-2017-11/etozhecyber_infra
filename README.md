@@ -93,3 +93,12 @@ sudo pip install -r requirements.txt
 
 ***packer-app.yml, packer-db.yml*** - плейбуки для Packer, заменяющие скрипты установки ПО для сервера приложений и сервера БД. Используются при подготовке образа с помощью Packer:
 ```packer build -var-file=./variables-app.json app.json```
+
+# Homework-12
+
+* Созданы отдельные роли **app** и **db**
+* Оригинальные **app.yml** и **db.yml** переделанны на вызов ролей
+* Созданы 2 окружения - **stage** и **prod**
+* Плейбуки были перенесены из корня папки ansible в подпапку playbooks
+* **ansible.conf** был переделан в соответствии с новой файловой стуктурой
+* Добавлена роль **jdauphant.nginx** - которая устанавливает nginx для reverse проксирования 
