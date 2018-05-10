@@ -64,3 +64,8 @@ sudo pip install -r requirements.txt
 Далее было поднято тестовое откружение, созданы inventory файлы (
 [ini](./ansible/inventory) и [yml](./ansible/inventory.yml)),
 проверен ping до хостов.
+
+#Homework-13
+## Ansible-4
+
+Запустили инфраструктуру в vagrante, прикрутили тестирование посредство molecule
