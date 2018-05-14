@@ -28,7 +28,7 @@ IP: 35.189.198.21
 
 Хост someinternalhost,
 внутр IP: 10.132.0.3
-# Homework-06 
+# Homework-06
 ##### Создание Redditapp instance из скрипта из git'а
 ```sh
 gcloud compute instances create reddit-app \
@@ -101,4 +101,9 @@ sudo pip install -r requirements.txt
 * Созданы 2 окружения - **stage** и **prod**
 * Плейбуки были перенесены из корня папки ansible в подпапку playbooks
 * **ansible.conf** был переделан в соответствии с новой файловой стуктурой
-* Добавлена роль **jdauphant.nginx** - которая устанавливает nginx для reverse проксирования 
+* Добавлена роль **jdauphant.nginx** - которая устанавливает nginx для reverse проксирования
+
+#Homework-13
+## Ansible-4
+
+Запустили инфраструктуру в vagrante, прикрутили тестирование посредство molecule
