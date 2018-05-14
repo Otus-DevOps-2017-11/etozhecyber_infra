@@ -28,7 +28,7 @@ IP: 35.189.198.21
 
 Хост someinternalhost,
 внутр IP: 10.132.0.3
-# Homework-06 
+# Homework-06
 ##### Создание Redditapp instance из скрипта из git'а
 ```sh
 gcloud compute instances create reddit-app \
@@ -53,6 +53,20 @@ gcloud compute instances create reddit-app \
 --restart-on-failure  \
 --metadata "startup-script=git clone https://github.com/Otus-DevOps-2017-11/reddit.git && cd reddit && bundle install && puma -d"
 ```
+
+# Homework 9
+## packer
+Создано 2 семейства образов из образа `ubuntu-1604-lts`:
+
+ `reddit-app-base` - базовый образ для приложения (с ruby на борту)
+
+ `reddit-db-base` - базовый образ для БД (c mongod на борту)
+
+## terraform
+Был создан модуль `vpc`,`app`,`db`.
+
+Создано два конфига для поднятия окружения `stage` и `prod`
+
 # Homework-10
 ## Базовая часть
 
@@ -63,7 +77,31 @@ sudo pip install -r requirements.txt
 ```
 Далее было поднято тестовое откружение, созданы inventory файлы (
 [ini](./ansible/inventory) и [yml](./ansible/inventory.yml)),
-проверен ping до хостов.
+
+проверен ping до хостов
+
+# Homework-11
+
+## Подготовлены следующие ansible playbooks:
+***reddit-app-one-play.yml*** - все задачи в одном файле и в одном сценарии, при запуске нужно ограничивать по тегу и группе хостов:
+```ansible-playbook reddit-app-one-play.yml --limit app --tags app-tag```
+
+***reddit-app-multiple-plays.yml*** - все задачи в одном файле и в множестве сценариев; при запуске достаточно ограничить только по тегу:
+```ansible-playbook reddit-app-multiple-plays.yml --tags app-tag```
+
+***site.yml + app.yml + db.yml + deploy.yml*** - каждый сценарий в своем файле, есть объединяющий сценарий. Запускать можно как отдельные сценарии, так и сводный файл для полного цикла деплоя.
+
+***packer-app.yml, packer-db.yml*** - плейбуки для Packer, заменяющие скрипты установки ПО для сервера приложений и сервера БД. Используются при подготовке образа с помощью Packer:
+```packer build -var-file=./variables-app.json app.json```
+
+# Homework-12
+
+* Созданы отдельные роли **app** и **db**
+* Оригинальные **app.yml** и **db.yml** переделанны на вызов ролей
+* Созданы 2 окружения - **stage** и **prod**
+* Плейбуки были перенесены из корня папки ansible в подпапку playbooks
+* **ansible.conf** был переделан в соответствии с новой файловой стуктурой
+* Добавлена роль **jdauphant.nginx** - которая устанавливает nginx для reverse проксирования
 
 #Homework-13
 ## Ansible-4
